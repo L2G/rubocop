@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'pathname'
 
 module Rubocop
   describe TargetFinder, :isolated_environment do
@@ -27,7 +28,7 @@ module Rubocop
       it 'returns absolute paths' do
         expect(found_files).not_to be_empty
         found_files.each do |file|
-          expect(file).to start_with('/')
+          expect(Pathname(file).absolute?).to be_true
         end
       end
 
